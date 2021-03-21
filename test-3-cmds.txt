@@ -1,0 +1,13 @@
+# Logs: Normal
+# Test for error handling
+g
+r
+m 12:11:20:12:51
+z 43
+f
+t 00:00:00:00:010|52:432:76:455467
+a 200
+d 3002
+b -4
+e 4155255
+q

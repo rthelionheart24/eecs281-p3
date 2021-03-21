@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
-#include <getopt.h>
+
+#include "Manager.h"
 
 using namespace std;
 
@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     /**
      * Set up variables needed to run the simulation
      */
+    cout << argc << endl;
 
     if (string(argv[1]) == "--help" || string(argv[1]) == "=h")
     {
@@ -21,7 +22,11 @@ int main(int argc, char *argv[])
     }
 
     string filename = argv[1];
-    cout << filename << endl;
+    ifstream in(filename);
+
+    Manager log_manager;
+
+    log_manager.read_logs(in);
 
     return 0;
 }

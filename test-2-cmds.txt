@@ -1,0 +1,13 @@
+# Logs: Timestamps are identical or close to each other
+# Commands: a, r, d, b, e
+a 5
+m 12:11:20:12:12
+r
+d 5
+b 1
+e 0
+g
+p
+l
+p
+q
