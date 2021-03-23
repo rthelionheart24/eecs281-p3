@@ -10,6 +10,11 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <numeric>
+#include <sstream>
+#include <unordered_map>
+#include <stdio.h>
+#include <ctype.h>
 
 struct log_entry
 {
@@ -17,6 +22,13 @@ struct log_entry
     std::string timestamp;
     std::string category;
     std::string msg;
+
+    friend std::ostream &operator<<(std::ostream &os, const log_entry &e)
+    {
+        os << e.ID << "|" << e.timestamp << "|" << e.category << "|" << e.msg << "\n";
+
+        return os;
+    }
 };
 
 struct excerpt_entry
@@ -24,23 +36,6 @@ struct excerpt_entry
     int ID;
     int index;
 };
-
-std::ostream &operator<<(std::ostream &os, const log_entry &e)
-{
-    os << e.ID << "|" << e.timestamp << "|" << e.category << "|" << e.msg << "\n";
-
-    return os;
-}
-
-// std::ostream &operator<<(std::ostream &os, const excerpt_entry &e)
-// {
-//     os << e.ID << "|"
-//        << entries[e.index].ID << "|"
-//        << e.log->timestamp << "|"
-//        << e.log->category << "|"
-//        << e.log->msg << "\n";
-//     return os;
-// }
 
 class log_entry_comp
 {
@@ -90,6 +85,19 @@ public:
     }
 };
 
+class comp_helper
+{
+public:
+    bool operator()(const std::string &s, const log_entry &e) const //upper
+    {
+        return s < e.timestamp;
+    }
+    bool operator()(const log_entry &e, const std::string &s) const //lower
+    {
+        return e.timestamp < s;
+    }
+};
+
 class Manager
 {
 private:
@@ -99,7 +107,9 @@ private:
 
     std::deque<excerpt_entry> excerpt_list;
 
-    int last_excerpt;
+    std::unordered_map<std::string, std::vector<int>> category_map;
+
+    std::unordered_map<std::string, std::vector<int>> msg_map;
 
 public:
     void read_logs(std::ifstream &in);
@@ -124,7 +134,7 @@ public:
     //Append search results
     void r_CMD();
 
-    //Delete log entry
+    //Delete excerpt entry
     void d_CMD(int index);
 
     //Move to beginning

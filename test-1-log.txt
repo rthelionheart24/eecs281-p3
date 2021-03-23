@@ -1,20 +1,10 @@
-# Logs: timestamps are identical and close to each other
-# Commands: t, m, c, k, g, p, l
-t 12:11:20:12:12|12:11:20:12:14
-r
-m 12:11:20:12:12
-m 12:11:20:12:17
-r
-c Thread
-r
-c threaD
-r
-k master
-r
-k Master
-r
-g
-l
-p
-l
-q
+12:11:20:12:12|TCP|Bad packet received (CID #8432)
+12:11:20:12:12|UI-PANE1|Window received focus.
+12:11:20:12:13|Thread|Suspending CPU 3
+12:11:20:15:12|TCP|Bad packet received (CID #12353)
+12:11:21:12:12|DB Mgr|Sending query: "SELECT * FROM users"
+12:12:20:12:12|UI-PANE2|Window received focus.
+13:11:20:12:12|Thread|Thread #12 blocking on join call to thread #4
+12:11:20:12:11|DB Mgr|Query results received ("SELECT * FROM users")
+12:11:20:10:12|UI-PANE1|Click event served.
+14:11:20:12:00|Thread|Thread #4 acquired lock #3

@@ -10,11 +10,42 @@ void Manager::read_logs(std::ifstream &in)
     {
         std::getline(in, category, '|');
         std::getline(in, msg);
-
         entries.push_back({ID++, timestamp, category, msg});
     }
     std::sort(entries.begin(), entries.end(), log_entry_comp());
     std::cout << ID << " entries read\n";
+
+    // //Initialize the map for categories
+    // for (size_t i = 0; i < entries.size(); i++)
+    // {
+
+    //     category_map[entries[i].category].push_back(i);
+    // }
+
+    // //Initialize the map for keywords
+    // for (size_t i = 0; i < entries.size(); i++)
+    // {
+    //     std::string s = entries[i].msg;
+    //     int len = 0;
+    //     int start = 0;
+
+    //     while (start + len < s.size())
+    //     {
+
+    //         if (isalnum(s[start + len]))
+    //         {
+    //             len++;
+    //         }
+    //         else
+    //         {
+    //             std::string temp = s.substr(start, len - 1);
+    //             msg_map[temp].push_back(i);
+
+    //             start = start + len + 1;
+    //             len = 0;
+    //         }
+    //     }
+    // }
 }
 
 void Manager::process_CMD()
@@ -26,38 +57,69 @@ void Manager::process_CMD()
         std::cout << "% ";
         std::cin >> CMD;
 
-        std::string junk;
+        std::string temp;
+        int index;
+
         switch (CMD)
         {
         case '#':
-            std::getline(std::cin, junk);
+            std::getline(std::cin, temp);
             break;
         case 't':
-            t_CMD();
+        {
+            std::string s1, s2;
+            std::getline(std::cin, s1, '|');
+            std::getline(std::cin, s2);
+            t_CMD(s1, s2);
             break;
+        }
         case 'm':
-            m_CMD();
+        {
+            std::string s;
+            std::getline(std::cin, s);
+            m_CMD(s);
             break;
-        case 'k':
-            k_CMD();
-            break;
+        }
+        // case 'c':
+        //     std::cin >> temp;
+        //     c_CMD(temp);
+        //     break;
+        // case 'k':
+        //     std::cin >> temp;
+        //     k_CMD(temp);
+        //     break;
         case 'a':
+
+            std::cin >> index;
+            a_CMD(index);
             break;
         case 'r':
+            r_CMD();
             break;
         case 'd':
+            std::cin >> index;
+            d_CMD(index);
             break;
+
         case 'b':
+            std::cin >> index;
+            b_CMD(index);
             break;
         case 'e':
+            std::cin >> index;
+            e_CMD(index);
             break;
         case 's':
+            s_CMD();
             break;
         case 'l':
+            l_CMD();
             break;
         case 'g':
+            g_CMD();
             break;
         case 'p':
+            p_CMD();
             break;
 
         default:
@@ -78,12 +140,12 @@ void Manager::t_CMD(std::string &t1, std::string &t2)
 
     search_results.clear();
 
-    for (auto &i : entries)
+    auto start = std::lower_bound(entries.begin(), entries.end(), t1, comp_helper());
+    auto end = std::upper_bound(entries.begin(), entries.end(), t2, comp_helper());
+
+    for (; start < end; start++)
     {
-        if (i.timestamp >= t1 && i.timestamp <= t2)
-        {
-            search_results.push_back(i.ID);
-        }
+        search_results.push_back(static_cast<int>(start - entries.begin()));
     }
 
     std::cout << "Timestamps search: " << search_results.size() << " entries found\n";
@@ -93,39 +155,39 @@ void Manager::m_CMD(std::string &t)
 {
     search_results.clear();
 
-    for (auto &i : entries)
+    auto start = std::lower_bound(entries.begin(), entries.end(), t, comp_helper());
+    auto end = std::upper_bound(entries.begin(), entries.end(), t, comp_helper());
+
+    for (; start < end; start++)
     {
-        if (i.timestamp == t)
-        {
-            search_results.push_back(i.ID);
-        }
+        search_results.push_back(static_cast<int>(start - entries.begin()));
     }
 
     std::cout << "Timestamp search: " << search_results.size() << " entries found\n";
 }
 
-void Manager::c_CMD(std::string &s)
-{
-    //TODO
-    search_results.clear();
-}
+// void Manager::c_CMD(std::string &s)
+// {
+//     //TODO
+//     search_results.clear();
+// }
 
-void Manager::k_CMD(std::string &s)
-{
-    //TODO
-    search_results.clear();
-}
+// void Manager::k_CMD(std::string &s)
+// {
+//     //TODO
+//     search_results.clear();
+// }
 
 void Manager::a_CMD(int index)
 {
 
-    if (index < 0 || index >= entries.size())
+    if (index < 0 || index >= static_cast<int>(entries.size()))
     {
         std::cerr << "Index out of bound for appending\n";
         return;
     }
 
-    excerpt_list.push_back({excerpt_list.size(), index});
+    excerpt_list.push_back({static_cast<int>(excerpt_list.size()), index});
     std::cout << "log entry " << index << " appended\n";
 }
 
@@ -140,14 +202,14 @@ void Manager::r_CMD()
 
     for (auto &i : search_results)
     {
-        excerpt_list.push_back({excerpt_list.size(), i});
+        excerpt_list.push_back({static_cast<int>(excerpt_list.size()), i});
     }
     std::cout << search_results.size() << " log entries appended\n";
 }
 
 void Manager::d_CMD(int index)
 {
-    if (index < 0 || index >= entries.size())
+    if (index < 0 || index >= static_cast<int>(entries.size()))
     {
         std::cerr << "Index out of bound for deletion\n";
         return;
@@ -166,7 +228,7 @@ void Manager::d_CMD(int index)
 
 void Manager::b_CMD(int index)
 {
-    if (index < 0 || index >= entries.size())
+    if (index < 0 || index >= static_cast<int>(entries.size()))
     {
         std::cerr << "Index out of bound for moving to the beginning\n";
         return;
@@ -174,7 +236,7 @@ void Manager::b_CMD(int index)
 
     excerpt_entry temp = excerpt_list[index];
 
-    for (size_t i = 1; i <= index; i++)
+    for (size_t i = 1; i <= static_cast<size_t>(index); i++)
     {
         excerpt_list[i] = excerpt_list[i - 1];
         excerpt_list[i].ID++;
@@ -186,7 +248,7 @@ void Manager::b_CMD(int index)
 
 void Manager::e_CMD(int index)
 {
-    if (index < 0 || index >= entries.size())
+    if (index < 0 || index >= static_cast<int>(entries.size()))
     {
         std::cerr << "Index out of bound for moving to the end\n";
         return;
