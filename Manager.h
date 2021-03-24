@@ -85,16 +85,22 @@ public:
     }
 };
 
-class comp_helper
+class lower_helper
+{
+public:
+    bool operator()(const log_entry &e, const std::string &s) const //lower
+    {
+        return e.timestamp < s;
+    }
+};
+
+class upper_helper
 {
 public:
     bool operator()(const std::string &s, const log_entry &e) const //upper
     {
+
         return s < e.timestamp;
-    }
-    bool operator()(const log_entry &e, const std::string &s) const //lower
-    {
-        return e.timestamp < s;
     }
 };
 

@@ -65,18 +65,26 @@ void Manager::process_CMD()
         case '#':
             std::getline(std::cin, temp);
             break;
+        case 'q':
+            return;
+            break;
         case 't':
         {
+
             std::string s1, s2;
+
             std::getline(std::cin, s1, '|');
-            std::getline(std::cin, s2);
+            s1 = s1.substr(1, 14);
+
+            std::cin >> s2;
+
             t_CMD(s1, s2);
             break;
         }
         case 'm':
         {
             std::string s;
-            std::getline(std::cin, s);
+            std::cin >> s;
             m_CMD(s);
             break;
         }
@@ -140,8 +148,8 @@ void Manager::t_CMD(std::string &t1, std::string &t2)
 
     search_results.clear();
 
-    auto start = std::lower_bound(entries.begin(), entries.end(), t1, comp_helper());
-    auto end = std::upper_bound(entries.begin(), entries.end(), t2, comp_helper());
+    auto start = std::lower_bound(entries.begin(), entries.end(), t1, lower_helper());
+    auto end = std::upper_bound(entries.begin(), entries.end(), t2, upper_helper());
 
     for (; start < end; start++)
     {
@@ -155,8 +163,8 @@ void Manager::m_CMD(std::string &t)
 {
     search_results.clear();
 
-    auto start = std::lower_bound(entries.begin(), entries.end(), t, comp_helper());
-    auto end = std::upper_bound(entries.begin(), entries.end(), t, comp_helper());
+    auto start = std::lower_bound(entries.begin(), entries.end(), t, lower_helper());
+    auto end = std::upper_bound(entries.begin(), entries.end(), t, upper_helper());
 
     for (; start < end; start++)
     {
@@ -235,8 +243,9 @@ void Manager::b_CMD(int index)
     }
 
     excerpt_entry temp = excerpt_list[index];
+    temp.ID = 0;
 
-    for (size_t i = 1; i <= static_cast<size_t>(index); i++)
+    for (size_t i = static_cast<size_t>(index); i >= 1; i--)
     {
         excerpt_list[i] = excerpt_list[i - 1];
         excerpt_list[i].ID++;
@@ -255,8 +264,9 @@ void Manager::e_CMD(int index)
     }
 
     excerpt_entry temp = excerpt_list[index];
+    temp.ID = static_cast<int>(excerpt_list.size());
 
-    for (size_t i = index; i < excerpt_list.size() - 1; i++)
+    for (size_t i = index; i < excerpt_list.size(); i++)
     {
         excerpt_list[i] = excerpt_list[i + 1];
         excerpt_list[i].ID--;
@@ -270,16 +280,21 @@ void Manager::e_CMD(int index)
 void Manager::s_CMD()
 {
     if (excerpt_list.empty())
-        std::cout << "excerpt list sorted\n (previously empty)\n";
+        std::cout << "excerpt list sorted\n(previously empty)\n";
 
     else
     {
-        std::cout << "excerpt list sorted\n previous ordering:\n"
+        std::cout << "excerpt list sorted\nprevious ordering:\n"
                   << excerpt_list.front().ID << "|" << entries[excerpt_list.front().index] << "\n"
                   << "...\n"
                   << excerpt_list.back().ID << "|" << entries[excerpt_list.back().index] << "\n";
 
         std::sort(excerpt_list.begin(), excerpt_list.end(), excerpt_entry_comp(entries));
+
+        for (size_t i = 0; i < excerpt_list.size(); i++)
+        {
+            excerpt_list[i].ID = static_cast<int>(i);
+        }
 
         std::cout << "new ordering:\n"
                   << excerpt_list.front().ID << "|" << entries[excerpt_list.front().index] << "\n"
@@ -292,10 +307,10 @@ void Manager::l_CMD()
 
 {
     if (excerpt_list.empty())
-        std::cout << "excerpt list sorted\n (previously empty)\n";
+        std::cout << "excerpt list sorted\n(previously empty)\n";
     else
     {
-        std::cout << "excerpt list cleared\n previous contents: \n"
+        std::cout << "excerpt list cleared\nprevious contents: \n"
                   << excerpt_list.front().ID << "|" << entries[excerpt_list.front().index] << "\n"
                   << "...\n"
                   << excerpt_list.back().ID << "|" << entries[excerpt_list.back().index] << "\n";

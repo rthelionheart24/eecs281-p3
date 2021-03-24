@@ -1,0 +1,3 @@
+12:11:20:12:12|TCP|Bad packet received (CID #8432)
+06:02:11:20:08|DB Mgr|Sending query: "SELECT * FROM users"
+04:25:21:54:22|Thread|Suspending CPU 3

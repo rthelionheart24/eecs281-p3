@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
      */
     cout << argc << endl;
 
-    if (string(argv[1]) == "--help" || string(argv[1]) == "=h")
+    if (string(argv[1]) == "--help" || string(argv[1]) == "h")
     {
         cout << "help\n";
         exit(0);
@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
     Manager log_manager;
 
     log_manager.read_logs(in);
+
+    log_manager.process_CMD();
 
     return 0;
 }
