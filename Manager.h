@@ -14,6 +14,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
 
 struct log_entry
@@ -42,9 +43,18 @@ class log_entry_comp
 public:
     bool operator()(const log_entry &e1, const log_entry &e2) const
     {
-        if (e1.timestamp == e2.timestamp)
+        std::string temp1 = e1.timestamp;
+        std::string temp2 = e2.timestamp;
+
+        temp1.erase(std::remove(temp1.begin(), temp1.end(), ':'), temp1.end());
+        temp2.erase(std::remove(temp2.begin(), temp2.end(), ':'), temp2.end());
+
+        int64_t converted1 = std::stol(temp1);
+        int64_t converted2 = std::stol(temp2);
+
+        if (converted1 == converted2)
             return e1.ID < e2.ID;
-        return e1.timestamp < e2.timestamp;
+        return converted1 < converted2;
     }
 };
 
@@ -56,32 +66,42 @@ private:
 public:
     excerpt_entry_comp(std::vector<log_entry> &entries_in) : entries(entries_in) {}
 
-    bool operator()(const excerpt_entry &e1, const excerpt_entry &e2)
+    bool operator()(const excerpt_entry &e1, const excerpt_entry &e2) const
     {
+        std::string temp1 = entries[e1.index].timestamp;
+        std::string temp2 = entries[e2.index].timestamp;
 
-        if (entries[e1.index].timestamp == entries[e2.index].timestamp)
+        temp1.erase(std::remove(temp1.begin(), temp1.end(), ':'), temp1.end());
+        temp2.erase(std::remove(temp2.begin(), temp2.end(), ':'), temp2.end());
+
+        int64_t converted1 = std::stol(temp1);
+        int64_t converted2 = std::stol(temp2);
+
+        if (converted1 == converted2)
         {
-
             std::string s1 = entries[e1.index].category, s2 = entries[e2.index].category;
 
-            std::transform(s1.begin(),
-                           s1.end(),
-                           s1.begin(),
-                           [](unsigned char c) { return std::tolower(c); });
+            const char *c1 = entries[e1.index].category.c_str();
+            const char *c2 = entries[e2.index].category.c_str();
 
-            std::transform(s2.begin(),
-                           s2.end(),
-                           s2.begin(),
-                           [](unsigned char c) { return std::tolower(c); });
+            // std::transform(s1.begin(),
+            //                s1.end(),
+            //                s1.begin(),
+            //                [](unsigned char c) { return std::tolower(c); });
 
-            if (s1 == s2)
+            // std::transform(s2.begin(),
+            //                s2.end(),
+            //                s2.begin(),
+            //                [](unsigned char c) { return std::tolower(c); });
+
+            if (strcasecmp(c1, c2) == 0)
             {
                 return entries[e1.index].ID < entries[e2.index].ID;
             }
-            return s1 <= s2;
+            return strcasecmp(c1, c2);
         }
 
-        return entries[e1.index].timestamp < entries[e2.index].timestamp;
+        return converted1 < converted2;
     }
 };
 
