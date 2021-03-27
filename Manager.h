@@ -67,12 +67,12 @@ public:
             std::transform(s1.begin(),
                            s1.end(),
                            s1.begin(),
-                           [](char c) { return std::tolower(c); });
+                           [](unsigned char c) { return std::tolower(c); });
 
             std::transform(s2.begin(),
                            s2.end(),
                            s2.begin(),
-                           [](char c) { return std::tolower(c); });
+                           [](unsigned char c) { return std::tolower(c); });
 
             if (s1 == s2)
             {

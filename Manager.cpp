@@ -85,7 +85,9 @@ void Manager::read_logs(std::ifstream &in)
 
     for (auto &i : keyword_map)
     {
-        std::unique(i.second.begin(), i.second.end());
+        std::sort(i.second.begin(), i.second.end());
+        auto it = std::unique(i.second.begin(), i.second.end());
+        i.second.resize(it - i.second.begin());
     }
 }
 
@@ -265,11 +267,10 @@ void Manager::k_CMD(std::string &s)
                 search_results = keyword_map[temp];
             else
             {
-                std::vector<int> results;
-                std::set_intersection(search_results.begin(), search_results.end(),
-                                      keyword_map[temp].begin(), keyword_map[temp].end(), results.begin());
 
-                search_results = results;
+                auto it = std::set_intersection(search_results.begin(), search_results.end(),
+                                                keyword_map[temp].begin(), keyword_map[temp].end(), search_results.begin());
+                search_results.resize(it - search_results.begin());
             }
 
             start = start + len + 1;
@@ -358,7 +359,7 @@ void Manager::e_CMD(int index)
     }
 
     excerpt_entry temp = excerpt_list[index];
-    temp.ID = static_cast<int>(excerpt_list.size());
+    temp.ID = static_cast<int>(excerpt_list.size() - 1);
 
     for (size_t i = index; i < excerpt_list.size(); i++)
     {
@@ -421,19 +422,20 @@ void Manager::g_CMD()
     }
 
     //A temporary sorted version of search results
-    std::deque<excerpt_entry> temp;
+    //std::deque<excerpt_entry> temp;
 
     for (auto &i : search_results)
     {
-        temp.push_back({0, i});
+        //temp.push_back({0, i});
+        std::cout << entries[i];
     }
 
-    std::sort(temp.begin(), temp.end(), excerpt_entry_comp(entries));
+    // std::sort(temp.begin(), temp.end(), excerpt_entry_comp(entries));
 
-    for (auto &i : temp)
-    {
-        std::cout << entries[i.index];
-    }
+    // for (auto &i : temp)
+    // {
+    //     std::cout << entries[i.index];
+    // }
 }
 
 void Manager::p_CMD()

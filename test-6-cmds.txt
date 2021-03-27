@@ -10,7 +10,6 @@ k BA
 k xiba
 k man
 k data
-k 
 s
 p
 l

@@ -1,12 +1,12 @@
 40000 entries read
 % log entry 32834 appended
-% Keyword search: 2518 entries found
-% 2518 log entries appended
+% Keyword search: 2424 entries found
+% 2424 log entries appended
 % excerpt list cleared
 previous contents: 
 0|32834|36:20:87:58:05|anaerobes|sympathogoniomas Stocky preconceiving hemoglobinic changing macronucleus continuando bluejacket soapstones cannibalism professionalists Vilification Vilification
 ...
-2518|10326|99:96:91:21:86|hemoglobinic|plasmacytoma riots revenge methodologists eyedropperful
+2424|10326|99:96:91:21:86|hemoglobinic|plasmacytoma riots revenge methodologists eyedropperful
 % log entry 38676 appended
 % log entry 22716 appended
 % excerpt list cleared
@@ -29,4 +29,142 @@ previous contents:
 0|19187|81:04:37:37:20|retrains|difficultly Pianists Sensorium ickiest airiest Besmeared slushiest squadrons Dived enterokinase Grazingly mimic
 ...
 1|39138|16:90:23:14:10|Pinnacling|retruded disbarred Kaleidoscopically interviews
+% Keyword search: 147 entries found
+% excerpt list cleared
+(previously empty)
+% excerpt list cleared
+(previously empty)
+% excerpt list sorted
+(previously empty)
+% Timestamps search: 17289 entries found
+% Category search: 2520 entries found
+% excerpt list cleared
+(previously empty)
+% 2520 log entries appended
+% Moved excerpt list entry 135
+% Category search: 2659 entries found
+% 2659 log entries appended
+% Keyword search: 1 entries found
+% 1 log entries appended
+% Deleted excerpt list entry 168
+% Timestamps search: 25222 entries found
+% Moved excerpt list entry 50
+% Keyword search: 2492 entries found
+% Deleted excerpt list entry 166
+% Category search: 2636 entries found
+% Moved excerpt list entry 283
+% excerpt list cleared
+previous contents: 
+0|32990|00:00:27:88:52|interferometries|Dived donates Unexpired debacles plasmacytoma Reinspect penumbra cercus gyrations Tabours microfibrillar
+...
+5177|30580|12:03:14:66:64|interferometries|Hypostatic money notices ducat Unexpired changing guiltlessness Pianists interferometries mimic forwardness chops hemikaryon narcissus
+% 2636 log entries appended
+% Moved excerpt list entry 89
+% Keyword search: 271 entries found
+% excerpt list cleared
+previous contents: 
+0|20085|00:03:29:50:17|balantidiosis|Sensorium disconsolateness Pianists morgagni donates Persevere Almoign hemikaryon Thanatobiologic idiopathies continuando nonstop balantidiosis
+...
+2635|33210|02:92:44:72:78|balantidiosis|enterokinase Dilator forwardness unsurprising disconsolateness barringer retouch hoes halls Extension retouch Emanating
+% Keyword search: 2413 entries found
+% excerpt list cleared
+(previously empty)
+% excerpt list sorted
+(previously empty)
+% Category search: 2661 entries found
+% Keyword search: 2417 entries found
+% Category search: 2712 entries found
+% 2712 log entries appended
+% Moved excerpt list entry 239
+% excerpt list sorted
+previous ordering:
+0|6069|00:07:11:00:15|forwardness|Saguaro formalin calxes pyonephrotic
+...
+2711|23183|08:87:65:95:22|forwardness|hoes candle donates Unchurch unsurprising formalin macronucleus
+new ordering:
+0|6069|00:07:11:00:15|forwardness|Saguaro formalin calxes pyonephrotic
+...
+2711|21424|99:98:21:49:92|forwardness|exalts manyfold optionor continuando changing Indorsing issuer interferometries Pinnacling Extension Extension Not Reinspect bluejacket Persevere
+% 2712 log entries appended
+% excerpt list cleared
+previous contents: 
+0|6069|00:07:11:00:15|forwardness|Saguaro formalin calxes pyonephrotic
+...
+5423|21424|99:98:21:49:92|forwardness|exalts manyfold optionor continuando changing Indorsing issuer interferometries Pinnacling Extension Extension Not Reinspect bluejacket Persevere
+% Category search: 2714 entries found
+% log entry 18350 appended
+% 2714 log entries appended
+% 2714 log entries appended
+% Moved excerpt list entry 82
+% Moved excerpt list entry 35
+% Keyword search: 2520 entries found
+% Category search: 2712 entries found
+% Moved excerpt list entry 109
+% Keyword search: 12 entries found
+% excerpt list cleared
+previous contents: 
+0|38087|03:50:61:94:86|hemikaryon|Tabours professionalists piteous hemikaryon slushiest Sageness accounter doddering Tunings Conjugators Fortuneteller Misidentify revenge difficultly
+...
+5428|34390|99:99:88:46:20|hemikaryon|consequent reenclosed money continuando
+% Timestamps search: 15566 entries found
+% Timestamps search: 24254 entries found
+% 24254 log entries appended
+% Deleted excerpt list entry 92
+% Deleted excerpt list entry 192
+% 24254 log entries appended
+% Deleted excerpt list entry 96
+% 24254 log entries appended
+% Moved excerpt list entry 215
+% 24254 log entries appended
+% Timestamps search: 15724 entries found
+% Keyword search: 2476 entries found
+% excerpt list cleared
+previous contents: 
+0|21996|00:00:15:76:94|anaerobes|Reexhibited astronomic chlorophenol plasmacytoma unmailable
+...
+97012|21712|60:50:02:02:99|Persevere|Grazingly tolstoy Not squadrons Genteel Burped ickiest catamenia pyonephrotic preconceiving cannibalism incunabulum Vilification hoes immunocytochemistry
+% Keyword search: 0 entries found
+% Keyword search: 512 entries found
+% Category search: 2636 entries found
+% 2636 log entries appended
+% Keyword search: 2468 entries found
+% Timestamps search: 8096 entries found
+% 8096 log entries appended
+% excerpt list sorted
+previous ordering:
+0|20085|00:03:29:50:17|balantidiosis|Sensorium disconsolateness Pianists morgagni donates Persevere Almoign hemikaryon Thanatobiologic idiopathies continuando nonstop balantidiosis
+...
+10731|26407|20:24:26:41:30|Pinnacling|changing smelly interrobang Emanating Tunings forwardness Besmeared subphylum plasmacytoma gluttons chlorophenol Croplands househusband
+new ordering:
+0|21996|00:00:15:76:94|anaerobes|Reexhibited astronomic chlorophenol plasmacytoma unmailable
+...
+10731|17089|99:99:27:13:81|balantidiosis|barringer chops extradited aspergillosis Stocky money accounter pachyonychia retrains
+% Deleted excerpt list entry 177
+% Category search: 2681 entries found
+% Deleted excerpt list entry 243
+% excerpt list cleared
+previous contents: 
+0|21996|00:00:15:76:94|anaerobes|Reexhibited astronomic chlorophenol plasmacytoma unmailable
+...
+10729|17089|99:99:27:13:81|balantidiosis|barringer chops extradited aspergillosis Stocky money accounter pachyonychia retrains
+% Category search: 2661 entries found
+% excerpt list cleared
+(previously empty)
+% log entry 23464 appended
+% Category search: 2691 entries found
+% log entry 4688 appended
+% Timestamps search: 37665 entries found
+% 37665 log entries appended
+% Timestamps search: 19307 entries found
+% Deleted excerpt list entry 163
+% Moved excerpt list entry 262
+% Keyword search: 0 entries found
+% Keyword search: 14 entries found
+% 14 log entries appended
+% Category search: 2691 entries found
+% Moved excerpt list entry 190
+% Moved excerpt list entry 185
+% 2691 log entries appended
+% Keyword search: 6 entries found
+% 6 log entries appended
 % 
