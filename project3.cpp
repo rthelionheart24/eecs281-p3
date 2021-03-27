@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
     /**
      * Set up variables needed to run the simulation
      */
-    cout << argc << endl;
+    int a = argc;
+    a++;
 
     if (string(argv[1]) == "--help" || string(argv[1]) == "h")
     {

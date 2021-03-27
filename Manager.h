@@ -108,6 +108,7 @@ class Manager
 {
 private:
     std::vector<log_entry> entries;
+    std::vector<int> entries_order;
 
     std::vector<int> search_results;
 
@@ -115,7 +116,7 @@ private:
 
     std::unordered_map<std::string, std::vector<int>> category_map;
 
-    std::unordered_map<std::string, std::vector<int>> msg_map;
+    std::unordered_map<std::string, std::vector<int>> keyword_map;
 
 public:
     void read_logs(std::ifstream &in);

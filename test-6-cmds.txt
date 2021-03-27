@@ -1,11 +1,16 @@
-# Logs: Empty log
-# Commands: all commands on trivial containers
+# Logs: Logs with edge cases categories and messages
+# Commands: Searching commands
 t 12:11:20:12:11|12:11:20:12:13
 m 12:11:20:12:12
-c T
-c t
+c baxiba
+c ba-xiba
+c ba xiba
 k ba
 k BA
+k xiba
+k man
+k data
+k 
 s
 p
 l
