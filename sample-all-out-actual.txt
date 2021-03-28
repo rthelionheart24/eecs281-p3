@@ -130,4 +130,41 @@ previous contents:
 % Keyword search: 2468 entries found
 % Timestamps search: 8096 entries found
 % 8096 log entries appended
+% excerpt list sorted
+previous ordering:
+0|20085|00:03:29:50:17|balantidiosis|Sensorium disconsolateness Pianists morgagni donates Persevere Almoign hemikaryon Thanatobiologic idiopathies continuando nonstop balantidiosis
+...
+10731|26407|20:24:26:41:30|Pinnacling|changing smelly interrobang Emanating Tunings forwardness Besmeared subphylum plasmacytoma gluttons chlorophenol Croplands househusband
+new ordering:
+0|21996|00:00:15:76:94|anaerobes|Reexhibited astronomic chlorophenol plasmacytoma unmailable
+...
+10731|17089|99:99:27:13:81|balantidiosis|barringer chops extradited aspergillosis Stocky money accounter pachyonychia retrains
+% Deleted excerpt list entry 177
+% Category search: 2681 entries found
+% Deleted excerpt list entry 243
+% excerpt list cleared
+previous contents: 
+0|21996|00:00:15:76:94|anaerobes|Reexhibited astronomic chlorophenol plasmacytoma unmailable
+...
+10729|17089|99:99:27:13:81|balantidiosis|barringer chops extradited aspergillosis Stocky money accounter pachyonychia retrains
+% Category search: 2661 entries found
+% excerpt list cleared
+(previously empty)
+% log entry 23464 appended
+% Category search: 2691 entries found
+% log entry 4688 appended
+% Timestamps search: 37665 entries found
+% 37665 log entries appended
+% Timestamps search: 19307 entries found
+% Deleted excerpt list entry 163
+% Moved excerpt list entry 262
+% Keyword search: 0 entries found
+% Keyword search: 14 entries found
+% 14 log entries appended
+% Category search: 2691 entries found
+% Moved excerpt list entry 190
+% Moved excerpt list entry 185
+% 2691 log entries appended
+% Keyword search: 6 entries found
+% 6 log entries appended
 % 

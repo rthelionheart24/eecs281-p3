@@ -89,6 +89,8 @@ void Manager::read_logs(std::ifstream &in)
         auto it = std::unique(i.second.begin(), i.second.end());
         i.second.resize(it - i.second.begin());
     }
+
+    search_results.push_back(-1);
 }
 
 void Manager::process_CMD()
@@ -206,6 +208,12 @@ void Manager::t_CMD(std::string &t1, std::string &t2)
 
 void Manager::m_CMD(std::string &t)
 {
+    if (t.length() != 14)
+    {
+        std::cerr << "Timestamp has invalid length\n";
+        return;
+    }
+
     search_results.clear();
 
     auto start = std::lower_bound(entries.begin(), entries.end(), t, lower_helper());
@@ -300,7 +308,7 @@ void Manager::a_CMD(int index)
 void Manager::r_CMD()
 {
 
-    if (search_results.empty())
+    if (search_results.front() == -1)
     {
         std::cerr << "No previous search for r\n";
         return;

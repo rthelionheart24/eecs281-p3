@@ -6,8 +6,13 @@ m 04:33:86:96:54
 m 95:41:64:60:16
 c dick
 c Con
-c con
-k ex
-k zltawefa
-k du
+c overstriking
+c over striking
+c Overstriking
+k overstriking
+k overstriking riots
+k overstrIKing
+k overstriking*^$riots
+k Conjugators riots
+k Conjugators@riots
 q

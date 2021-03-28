@@ -81,9 +81,6 @@ public:
         {
             std::string s1 = entries[e1.index].category, s2 = entries[e2.index].category;
 
-            const char *c1 = entries[e1.index].category.c_str();
-            const char *c2 = entries[e2.index].category.c_str();
-
             // std::transform(s1.begin(),
             //                s1.end(),
             //                s1.begin(),
@@ -94,11 +91,11 @@ public:
             //                s2.begin(),
             //                [](unsigned char c) { return std::tolower(c); });
 
-            if (strcasecmp(c1, c2) == 0)
+            if (strcasecmp(s1.c_str(), s2.c_str()) == 0)
             {
                 return entries[e1.index].ID < entries[e2.index].ID;
             }
-            return strcasecmp(c1, c2);
+            return strcasecmp(s1.c_str(), s2.c_str()) < 0;
         }
 
         return converted1 < converted2;
@@ -110,7 +107,16 @@ class lower_helper
 public:
     bool operator()(const log_entry &e, const std::string &s) const //lower
     {
-        return e.timestamp < s;
+        std::string temp1 = e.timestamp;
+        std::string temp2 = s;
+
+        temp1.erase(std::remove(temp1.begin(), temp1.end(), ':'), temp1.end());
+        temp2.erase(std::remove(s.begin(), s.end(), ':'), s.end());
+
+        int64_t converted1 = std::stol(temp1);
+        int64_t converted2 = std::stol(s);
+
+        return converted1 < converted2;
     }
 };
 
@@ -120,7 +126,16 @@ public:
     bool operator()(const std::string &s, const log_entry &e) const //upper
     {
 
-        return s < e.timestamp;
+        std::string temp1 = s;
+        std::string temp2 = e.timestamp;
+
+        temp1.erase(std::remove(temp1.begin(), temp1.end(), ':'), temp1.end());
+        temp2.erase(std::remove(s.begin(), s.end(), ':'), s.end());
+
+        int64_t converted1 = std::stol(temp1);
+        int64_t converted2 = std::stol(s);
+
+        return converted1 < converted2;
     }
 };
 
