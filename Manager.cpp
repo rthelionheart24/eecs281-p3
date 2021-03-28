@@ -390,7 +390,7 @@ void Manager::s_CMD()
                   << "...\n"
                   << excerpt_list.size() - 1 << "|" << entries[excerpt_list.back()];
 
-        std::sort(excerpt_list.begin(), excerpt_list.end(), excerpt_entry_comp(entries));
+        std::sort(excerpt_list.begin(), excerpt_list.end());
 
         std::cout << "new ordering:\n"
                   << 0 << "|" << entries[excerpt_list.front()]
@@ -406,10 +406,10 @@ void Manager::l_CMD()
         std::cout << "excerpt list cleared\n(previously empty)\n";
     else
     {
-        std::cout << "excerpt list cleared\nprevious contents: \n"
+        std::cout << "excerpt list cleared\nprevious contents:\n"
                   << 0 << "|" << entries[excerpt_list.front()]
                   << "...\n"
-                  << excerpt_list.size() << "|" << entries[excerpt_list.back()];
+                  << excerpt_list.size() - 1 << "|" << entries[excerpt_list.back()];
         excerpt_list.clear();
     }
 }
