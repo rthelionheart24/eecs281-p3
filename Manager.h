@@ -53,7 +53,16 @@ public:
         int64_t converted2 = std::stol(temp2);
 
         if (converted1 == converted2)
-            return e1.ID < e2.ID;
+        {
+            std::string s1 = e1.category, s2 = e2.category;
+
+            if (strcasecmp(s1.c_str(), s2.c_str()) == 0)
+            {
+                return e1.ID < e2.ID;
+            }
+            return strcasecmp(s1.c_str(), s2.c_str()) < 0;
+        }
+
         return converted1 < converted2;
     }
 };
@@ -111,10 +120,10 @@ public:
         std::string temp2 = s;
 
         temp1.erase(std::remove(temp1.begin(), temp1.end(), ':'), temp1.end());
-        temp2.erase(std::remove(s.begin(), s.end(), ':'), s.end());
+        temp2.erase(std::remove(temp2.begin(), temp2.end(), ':'), temp2.end());
 
         int64_t converted1 = std::stol(temp1);
-        int64_t converted2 = std::stol(s);
+        int64_t converted2 = std::stol(temp2);
 
         return converted1 < converted2;
     }
@@ -130,10 +139,10 @@ public:
         std::string temp2 = e.timestamp;
 
         temp1.erase(std::remove(temp1.begin(), temp1.end(), ':'), temp1.end());
-        temp2.erase(std::remove(s.begin(), s.end(), ':'), s.end());
+        temp2.erase(std::remove(temp2.begin(), temp2.end(), ':'), temp2.end());
 
         int64_t converted1 = std::stol(temp1);
-        int64_t converted2 = std::stol(s);
+        int64_t converted2 = std::stol(temp2);
 
         return converted1 < converted2;
     }
