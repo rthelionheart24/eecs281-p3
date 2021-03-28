@@ -301,7 +301,7 @@ void Manager::a_CMD(int index)
         return;
     }
 
-    excerpt_list.push_back({static_cast<int>(excerpt_list.size()), entries_order[index]});
+    excerpt_list.push_back(entries_order[index]);
     std::cout << "log entry " << index << " appended\n";
 }
 
@@ -316,7 +316,7 @@ void Manager::r_CMD()
 
     for (auto &i : search_results)
     {
-        excerpt_list.push_back({static_cast<int>(excerpt_list.size()), i});
+        excerpt_list.push_back(i);
     }
     std::cout << search_results.size() << " log entries appended\n";
 }
@@ -333,7 +333,6 @@ void Manager::d_CMD(int index)
     {
 
         excerpt_list[i] = excerpt_list[i + 1];
-        excerpt_list[i].ID--;
     }
     excerpt_list.pop_back();
 
@@ -348,13 +347,11 @@ void Manager::b_CMD(int index)
         return;
     }
 
-    excerpt_entry temp = excerpt_list[index];
-    temp.ID = 0;
+    int temp = excerpt_list[index];
 
     for (size_t i = static_cast<size_t>(index); i >= 1; i--)
     {
         excerpt_list[i] = excerpt_list[i - 1];
-        excerpt_list[i].ID++;
     }
     excerpt_list[0] = temp;
 
@@ -369,13 +366,11 @@ void Manager::e_CMD(int index)
         return;
     }
 
-    excerpt_entry temp = excerpt_list[index];
-    temp.ID = static_cast<int>(excerpt_list.size() - 1);
+    int temp = excerpt_list[index];
 
     for (size_t i = index; i < excerpt_list.size(); i++)
     {
         excerpt_list[i] = excerpt_list[i + 1];
-        excerpt_list[i].ID--;
     }
     excerpt_list.pop_back();
     excerpt_list.push_back(temp);
@@ -391,21 +386,16 @@ void Manager::s_CMD()
     else
     {
         std::cout << "excerpt list sorted\nprevious ordering:\n"
-                  << excerpt_list.front().ID << "|" << entries[excerpt_list.front().index]
+                  << 0 << "|" << entries[excerpt_list.front()]
                   << "...\n"
-                  << excerpt_list.back().ID << "|" << entries[excerpt_list.back().index];
+                  << excerpt_list.size() - 1 << "|" << entries[excerpt_list.back()];
 
         std::sort(excerpt_list.begin(), excerpt_list.end(), excerpt_entry_comp(entries));
 
-        for (size_t i = 0; i < excerpt_list.size(); i++)
-        {
-            excerpt_list[i].ID = static_cast<int>(i);
-        }
-
         std::cout << "new ordering:\n"
-                  << excerpt_list.front().ID << "|" << entries[excerpt_list.front().index]
+                  << 0 << "|" << entries[excerpt_list.front()]
                   << "...\n"
-                  << excerpt_list.back().ID << "|" << entries[excerpt_list.back().index];
+                  << excerpt_list.size() - 1 << "|" << entries[excerpt_list.back()];
     }
 }
 
@@ -417,9 +407,9 @@ void Manager::l_CMD()
     else
     {
         std::cout << "excerpt list cleared\nprevious contents: \n"
-                  << excerpt_list.front().ID << "|" << entries[excerpt_list.front().index]
+                  << 0 << "|" << entries[excerpt_list.front()]
                   << "...\n"
-                  << excerpt_list.back().ID << "|" << entries[excerpt_list.back().index];
+                  << excerpt_list.size() << "|" << entries[excerpt_list.back()];
         excerpt_list.clear();
     }
 }
@@ -433,26 +423,26 @@ void Manager::g_CMD()
     }
 
     //A temporary sorted version of search results
-    //std::deque<excerpt_entry> temp;
+    // std::deque<int> temp;
 
     for (auto &i : search_results)
     {
-        //temp.push_back({0, i});
         std::cout << entries[i];
+        // temp.push_back(i);
     }
 
     // std::sort(temp.begin(), temp.end(), excerpt_entry_comp(entries));
 
     // for (auto &i : temp)
     // {
-    //     std::cout << entries[i.index];
+    //     std::cout << entries[i];
     // }
 }
 
 void Manager::p_CMD()
 {
-    for (auto &i : excerpt_list)
+    for (size_t i = 0; i < excerpt_list.size(); i++)
     {
-        std::cout << i.ID << "|" << entries[i.index];
+        std::cout << i << "|" << entries[excerpt_list[i]];
     }
 }

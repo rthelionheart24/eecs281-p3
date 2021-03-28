@@ -75,10 +75,10 @@ private:
 public:
     excerpt_entry_comp(std::vector<log_entry> &entries_in) : entries(entries_in) {}
 
-    bool operator()(const excerpt_entry &e1, const excerpt_entry &e2) const
+    bool operator()(const int e1, const int e2) const
     {
-        std::string temp1 = entries[e1.index].timestamp;
-        std::string temp2 = entries[e2.index].timestamp;
+        std::string temp1 = entries[e1].timestamp;
+        std::string temp2 = entries[e2].timestamp;
 
         temp1.erase(std::remove(temp1.begin(), temp1.end(), ':'), temp1.end());
         temp2.erase(std::remove(temp2.begin(), temp2.end(), ':'), temp2.end());
@@ -88,7 +88,7 @@ public:
 
         if (converted1 == converted2)
         {
-            std::string s1 = entries[e1.index].category, s2 = entries[e2.index].category;
+            std::string s1 = entries[e1].category, s2 = entries[e2].category;
 
             // std::transform(s1.begin(),
             //                s1.end(),
@@ -102,7 +102,7 @@ public:
 
             if (strcasecmp(s1.c_str(), s2.c_str()) == 0)
             {
-                return entries[e1.index].ID < entries[e2.index].ID;
+                return entries[e1].ID < entries[e2].ID;
             }
             return strcasecmp(s1.c_str(), s2.c_str()) < 0;
         }
@@ -156,7 +156,7 @@ private:
 
     std::vector<int> search_results;
 
-    std::deque<excerpt_entry> excerpt_list;
+    std::deque<int> excerpt_list;
 
     std::unordered_map<std::string, std::vector<int>> category_map;
 
