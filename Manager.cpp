@@ -295,6 +295,7 @@ void Manager::k_CMD(std::string &s)
 void Manager::a_CMD(int index)
 {
 
+    //TODO append based on entry ID but delete should be based on excerpt list number
     if (index < 0 || index >= static_cast<int>(entries.size()))
     {
         std::cerr << "Index out of bound for appending\n";
@@ -326,7 +327,7 @@ void Manager::r_CMD()
 
 void Manager::d_CMD(int index)
 {
-    if (index < 0 || index >= static_cast<int>(entries.size()))
+    if (index < 0 || index >= static_cast<int>(excerpt_list.size()))
     {
         std::cerr << "Index out of bound for deletion\n";
         return;
@@ -346,7 +347,7 @@ void Manager::d_CMD(int index)
 
 void Manager::b_CMD(int index)
 {
-    if (index < 0 || index >= static_cast<int>(entries.size()))
+    if (index < 0 || index >= static_cast<int>(excerpt_list.size()))
     {
         std::cerr << "Index out of bound for moving to the beginning\n";
         return;
@@ -369,7 +370,7 @@ void Manager::b_CMD(int index)
 
 void Manager::e_CMD(int index)
 {
-    if (index < 0 || index >= static_cast<int>(entries.size()))
+    if (index < 0 || index >= static_cast<int>(excerpt_list.size()))
     {
         std::cerr << "Index out of bound for moving to the end\n";
         return;
