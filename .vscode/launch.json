@@ -12,7 +12,7 @@
             "args": ["sample-log.txt", 
                      "<", 
                      "sample-all-cmds.txt",
-                     ">", "sample-all-out-actual.txt"],
+                        ">", "sample-all-out-actual.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

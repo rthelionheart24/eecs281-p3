@@ -314,10 +314,13 @@ void Manager::r_CMD()
         return;
     }
 
-    for (auto &i : search_results)
-    {
-        excerpt_list.push_back(i);
-    }
+    // for (auto &i : search_results)
+    // {
+    //     excerpt_list.push_back(i);
+    // }
+
+    excerpt_list.insert(excerpt_list.end(), search_results.begin(), search_results.end());
+
     std::cout << search_results.size() << " log entries appended\n";
 }
 
@@ -329,12 +332,14 @@ void Manager::d_CMD(int index)
         return;
     }
 
-    for (size_t i = index; i < excerpt_list.size() - 1; i++)
-    {
+    // for (size_t i = index; i < excerpt_list.size() - 1; i++)
+    // {
 
-        excerpt_list[i] = excerpt_list[i + 1];
-    }
-    excerpt_list.pop_back();
+    //     excerpt_list[i] = excerpt_list[i + 1];
+    // }
+    // excerpt_list.pop_back();
+
+    excerpt_list.erase(excerpt_list.begin() + index);
 
     std::cout << "Deleted excerpt list entry " << index << "\n";
 }
@@ -349,11 +354,15 @@ void Manager::b_CMD(int index)
 
     int temp = excerpt_list[index];
 
-    for (size_t i = static_cast<size_t>(index); i >= 1; i--)
-    {
-        excerpt_list[i] = excerpt_list[i - 1];
-    }
-    excerpt_list[0] = temp;
+    // for (size_t i = static_cast<size_t>(index); i >= 1; i--)
+    // {
+    //     excerpt_list[i] = excerpt_list[i - 1];
+    // }
+    // excerpt_list[0] = temp;
+
+    excerpt_list.erase(excerpt_list.begin() + index);
+
+    excerpt_list.push_front(temp);
 
     std::cout << "Moved excerpt list entry " << index << "\n";
 }
@@ -368,11 +377,14 @@ void Manager::e_CMD(int index)
 
     int temp = excerpt_list[index];
 
-    for (size_t i = index; i < excerpt_list.size(); i++)
-    {
-        excerpt_list[i] = excerpt_list[i + 1];
-    }
-    excerpt_list.pop_back();
+    // for (size_t i = index; i < excerpt_list.size(); i++)
+    // {
+    //     excerpt_list[i] = excerpt_list[i + 1];
+    // }
+    // excerpt_list.pop_back();
+    // excerpt_list.push_back(temp);
+
+    excerpt_list.erase(excerpt_list.begin() + index);
     excerpt_list.push_back(temp);
 
     std::cout << "Moved excerpt list entry " << index << "\n";
@@ -441,6 +453,7 @@ void Manager::g_CMD()
 
 void Manager::p_CMD()
 {
+
     for (size_t i = 0; i < excerpt_list.size(); i++)
     {
         std::cout << i << "|" << entries[excerpt_list[i]];
