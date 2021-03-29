@@ -89,8 +89,6 @@ void Manager::read_logs(std::ifstream &in)
         auto it = std::unique(i.second.begin(), i.second.end());
         i.second.resize(it - i.second.begin());
     }
-
-    search_results.push_back(-1);
 }
 
 void Manager::process_CMD()
@@ -193,6 +191,8 @@ void Manager::t_CMD(std::string &t1, std::string &t2)
         return;
     }
 
+    searched = true;
+
     search_results.clear();
 
     auto start = std::lower_bound(entries.begin(), entries.end(), t1, lower_helper());
@@ -213,7 +213,7 @@ void Manager::m_CMD(std::string &t)
         std::cerr << "Timestamp has invalid length\n";
         return;
     }
-
+    searched = true;
     search_results.clear();
 
     auto start = std::lower_bound(entries.begin(), entries.end(), t, lower_helper());
@@ -229,7 +229,7 @@ void Manager::m_CMD(std::string &t)
 
 void Manager::c_CMD(std::string &s)
 {
-
+    searched = true;
     search_results.clear();
 
     std::string dummy = s;
@@ -239,13 +239,11 @@ void Manager::c_CMD(std::string &s)
     search_results = category_map[dummy];
 
     std::cout << "Category search: " << search_results.size() << " entries found\n";
-
-    search_results = category_map[dummy];
 }
 
 void Manager::k_CMD(std::string &s)
 {
-
+    searched = true;
     search_results.clear();
 
     std::string dummy = s;
@@ -295,7 +293,6 @@ void Manager::k_CMD(std::string &s)
 void Manager::a_CMD(int index)
 {
 
-    //TODO append based on entry ID but delete should be based on excerpt list number
     if (index < 0 || index >= static_cast<int>(entries.size()))
     {
         std::cerr << "Index out of bound for appending\n";
@@ -309,7 +306,7 @@ void Manager::a_CMD(int index)
 void Manager::r_CMD()
 {
 
-    if (search_results.front() == -1)
+    if (!searched)
     {
         std::cerr << "No previous search for r\n";
         return;
@@ -429,7 +426,7 @@ void Manager::l_CMD()
 
 void Manager::g_CMD()
 {
-    if (search_results.empty())
+    if (!searched)
     {
         std::cerr << "No previous search for g\n";
         return;

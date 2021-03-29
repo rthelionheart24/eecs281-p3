@@ -162,6 +162,8 @@ private:
 
     std::unordered_map<std::string, std::vector<int>> keyword_map;
 
+    bool searched = false;
+
 public:
     void read_logs(std::ifstream &in);
 
