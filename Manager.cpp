@@ -273,14 +273,13 @@ void Manager::k_CMD(std::string &s)
                 search_results = keyword_map[temp];
             else
             {
-
                 auto it = std::set_intersection(search_results.begin(), search_results.end(),
                                                 keyword_map[temp].begin(), keyword_map[temp].end(), search_results.begin());
                 search_results.resize(it - search_results.begin());
-
-                if (search_results.size() == 0)
-                    break;
             }
+
+            if (search_results.empty())
+                break;
 
             start = start + len + 1;
             len = 0;
