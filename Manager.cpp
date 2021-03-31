@@ -22,6 +22,7 @@ void Manager::read_logs(std::ifstream &in)
     //Initialize the map for keywords
     for (size_t i = 0; i < entries.size(); i++)
     {
+        //Initialize order vector
         entries_order[entries[i].ID] = static_cast<int>(i);
 
         std::string s1 = entries[i].msg;
