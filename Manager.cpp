@@ -85,7 +85,7 @@ void Manager::read_logs(std::ifstream &in)
 
     for (auto &i : keyword_map)
     {
-        std::sort(i.second.begin(), i.second.end());
+        // std::sort(i.second.begin(), i.second.end());
         auto it = std::unique(i.second.begin(), i.second.end());
         i.second.resize(it - i.second.begin());
     }
