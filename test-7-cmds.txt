@@ -1,6 +1,10 @@
 # Logs: Random logs
 # Commands: When containiers are empty
 r
+s
+l
+g
+p
 k dickkk
 r
 k ALRM

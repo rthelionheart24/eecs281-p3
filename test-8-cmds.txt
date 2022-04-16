@@ -1,0 +1,12 @@
+# Logs: random logs
+# Commands: a, d, e, b
+g
+p
+r
+a 10
+d 10
+b 10
+e 10
+g
+#dassdasf
+q

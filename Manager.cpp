@@ -15,27 +15,16 @@ void Manager::read_logs(std::ifstream &in)
     std::sort(entries.begin(), entries.end(), log_entry_comp());
     std::cout << ID << " entries read\n";
 
-    //Initialize the map for categories
-    for (size_t i = 0; i < entries.size(); i++)
-    {
-        std::string s = entries[i].category;
-        std::transform(s.begin(), s.end(), s.begin(),
-                       [](unsigned char c) { return std::tolower(c); });
-
-        category_map[s].push_back(static_cast<int>(i));
-    }
-
     //Initialize order vector
     entries_order.resize(entries.size());
 
-    for (size_t i = 0; i < entries.size(); i++)
-    {
-        entries_order[entries[i].ID] = static_cast<int>(i);
-    }
-
+    //Initialize the map for categories
     //Initialize the map for keywords
     for (size_t i = 0; i < entries.size(); i++)
     {
+        //Initialize order vector
+        entries_order[entries[i].ID] = static_cast<int>(i);
+
         std::string s1 = entries[i].msg;
         std::string s2 = entries[i].category;
 
@@ -43,6 +32,8 @@ void Manager::read_logs(std::ifstream &in)
                        [](unsigned char c) { return std::tolower(c); });
         std::transform(s2.begin(), s2.end(), s2.begin(),
                        [](unsigned char c) { return std::tolower(c); });
+
+        category_map[s2].push_back(static_cast<int>(i));
 
         int len = 0;
         int start = 0;
@@ -56,7 +47,8 @@ void Manager::read_logs(std::ifstream &in)
             else
             {
                 std::string temp = s1.substr(start, len);
-                keyword_map[temp].push_back(static_cast<int>(i));
+                if (!std::binary_search(keyword_map[temp].begin(), keyword_map[temp].end(), i))
+                    keyword_map[temp].push_back(static_cast<int>(i));
 
                 start = start + len + 1;
                 len = 0;
@@ -75,7 +67,8 @@ void Manager::read_logs(std::ifstream &in)
             else
             {
                 std::string temp = s2.substr(start, len);
-                keyword_map[temp].push_back(static_cast<int>(i));
+                if (!std::binary_search(keyword_map[temp].begin(), keyword_map[temp].end(), i))
+                    keyword_map[temp].push_back(static_cast<int>(i));
 
                 start = start + len + 1;
                 len = 0;
